@@ -9,4 +9,4 @@ React Native Mobile Front-end for the EventMap project.
 - Write setup guide
 - Add more information to the README
 - Set up the project board for more tasks
-- Add linting support with instructions
+- Add linting setup instructions

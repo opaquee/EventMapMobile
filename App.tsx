@@ -1,35 +1,47 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import styled from 'styled-components/native'
-import { View } from 'react-native';
+/* eslint import/no-extraneous-dependencies: 0 */
+// @expo/vector-icons package comes by default with expo
+import { MaterialIcons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
 
-import { EventView } from './screens/EventView';
-import { MapView } from './screens/MapView';
-import { Navbar } from './components/Navbar';
-import { ProfileView } from './screens/ProfileView';
+import { EventView } from "./screens/EventView";
+import { MapView } from "./screens/MapView";
+import { ProfileView } from "./screens/ProfileView";
 
-const AppWrapper = styled(View)`
-  border: solid red;
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
+const Tab = createBottomTabNavigator();
 
-const Stack = createStackNavigator();
-
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Map">
-          <Stack.Screen name="Map" component={MapView} />
-          <Stack.Screen name="Events" component={EventView} />
-          <Stack.Screen name="Profile" component={ProfileView} />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            let iconName;
 
+            if (route.name === "Map") {
+              iconName = "map";
+            } else if (route.name === "Events") {
+              iconName = "format-list-bulleted";
+            } else if (route.name === "Profile") {
+              iconName = "person";
+            } else {
+              iconName = "map";
+            }
+
+            // You can return any component that you like here!
+            return <MaterialIcons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: "blue",
+          inactiveTintColor: "gray",
+        }}
+      >
+        <Tab.Screen name="Map" component={MapView} />
+        <Tab.Screen name="Events" component={EventView} />
+        <Tab.Screen name="Profile" component={ProfileView} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
