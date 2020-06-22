@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 
 import { EventView } from "./screens/EventView";
-import { MapView } from "./screens/MapView";
+import { MapViewScreen } from "./screens/MapView";
 import { ProfileView } from "./screens/ProfileView";
 
 const Tab = createBottomTabNavigator();
@@ -38,7 +38,7 @@ export default function App(): JSX.Element {
           inactiveTintColor: "gray",
         }}
       >
-        <Tab.Screen name="Map" component={MapView} />
+        <Tab.Screen name="Map" component={MapViewScreen} />
         <Tab.Screen name="Events" component={EventView} />
         <Tab.Screen name="Profile" component={ProfileView} />
       </Tab.Navigator>
