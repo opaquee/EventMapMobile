@@ -5,9 +5,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 
-import { EventView } from "./screens/EventView";
-import { MapViewScreen } from "./screens/MapView";
-import { ProfileView } from "./screens/ProfileView";
+import { accent } from "./src/config";
+import { EventView } from "./src/screens/EventView";
+import { MapViewScreen } from "./src/screens/MapView";
+import { ProfileView } from "./src/screens/ProfileView";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,8 +35,8 @@ export default function App(): JSX.Element {
           },
         })}
         tabBarOptions={{
-          activeTintColor: "blue",
-          inactiveTintColor: "gray",
+          activeTintColor: accent,
+          inactiveTintColor: "black",
         }}
       >
         <Tab.Screen name="Map" component={MapViewScreen} />
