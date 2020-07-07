@@ -12,3 +12,7 @@ web-report/
 
 # macOS
 .DS_Store
+
+# "Redundant" ignore targets to make VSCode ignore these folders
+node_modules/
+.expo

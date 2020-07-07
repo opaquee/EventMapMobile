@@ -47,5 +47,8 @@
   "private": true,
   "eslintConfig": {
     "extends": "universe/native"
+  },
+  "resolutions": {
+    "logkitty": "^0.7.1"
   }
 }
