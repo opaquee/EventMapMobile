@@ -1,13 +1,14 @@
 /* eslint import/no-extraneous-dependencies: 0 */
 // @expo/vector-icons package comes by default with expo
 import { Entypo } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 
 import { accent, darkTextColor, lightTextColor } from "../../config";
 
-const StyledEventCard = styled(View)`
+const StyledEventCard = styled(TouchableOpacity)`
   width: 90%;
   margin: 8px;
 `;
@@ -45,6 +46,7 @@ const EventTime = styled(Text)`
 `;
 
 interface EventCardProps {
+  id: string;
   name: string;
   address: string;
   startTime: string;
@@ -52,13 +54,20 @@ interface EventCardProps {
 }
 
 const EventCard: React.FC<EventCardProps> = ({
+  id,
   name,
   address,
   startTime,
   endTime,
 }): JSX.Element => {
+  const navigation = useNavigation();
+
+  const navigateToEventDetails = (): void => {
+    navigation.navigate(id);
+  };
+
   return (
-    <StyledEventCard>
+    <StyledEventCard onPress={navigateToEventDetails}>
       <EventHeader>
         <EventName>{name}</EventName>
         <EventDesc>{address}</EventDesc>

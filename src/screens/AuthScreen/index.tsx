@@ -26,11 +26,11 @@ const SecureRoute: React.FC<Props> = ({
 
   useEffect(() => {
     const getAuth = async () => {
-      const AuthResult = true;
+      let AuthResult = false;
 
       // TODO: Replace with fetch request
       setTimeout(() => {
-        console.log("Test");
+        AuthResult = true;
       }, 1000);
 
       if (AuthResult) {

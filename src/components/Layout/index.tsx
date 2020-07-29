@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import styled from "styled-components/native";
 
 const AppWrapper = styled(ScrollView)`
