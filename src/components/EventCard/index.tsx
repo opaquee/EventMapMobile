@@ -3,7 +3,7 @@
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { DatePickerAndroid, Text, TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 
 import { accent, darkTextColor, lightTextColor } from "../../config";
@@ -49,8 +49,8 @@ interface EventCardProps {
   id: string;
   name: string;
   address: string;
-  startTime: string;
-  endTime: string;
+  startTime: Date;
+  endTime: DatePickerAndroid;
 }
 
 const EventCard: React.FC<EventCardProps> = ({

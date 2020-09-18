@@ -1,3 +1,4 @@
+import { gql, useQuery } from "@apollo/client";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { Text } from "react-native";
@@ -8,55 +9,45 @@ import { EventScreen } from "../EventScreen";
 
 const EventStack = createStackNavigator();
 
-const dummyData = [
-  {
-    id: "asC2e",
-    name: "Multirotor Software Meeting",
-    address: "207 Computer Science Building",
-    startTime: "17:00",
-    endTime: "19:00",
-  },
-  {
-    id: "pWva23",
-    name: "S&T SUB Concert",
-    address: "Havener Lawn",
-    startTime: "19:00",
-    endTime: "22:00",
-  },
-  {
-    id: "fpa5vds1",
-    name: "Rolla Photo Club",
-    address: "Havener Lawn",
-    startTime: "19:00",
-    endTime: "22:00",
-  },
-  {
-    id: "NBsA24",
-    name: "S&T PRO Day",
-    address: "Havener Lawn",
-    startTime: "19:00",
-    endTime: "22:00",
-  },
-  {
-    id: "pqRz23",
-    name: "Chill n' Grill",
-    address: "Havener Lawn",
-    startTime: "19:00",
-    endTime: "22:00",
-  },
-];
+const GET_EVENTS = gql`
+  query getAllNearbyEvents {
+    Event {
+      id
+      name
+      description
+      addressLine1
+      startDate
+      endDate
+    }
+  }
+`;
+
+interface Event {
+  id: string;
+  name: string;
+  description: string;
+  addressLine1: string;
+  startDate: Date;
+  endDate: Date;
+}
 
 const EventList: React.FC = (): JSX.Element => {
+  const { loading, error, data } = useQuery(GET_EVENTS);
+
+  if (loading) return <Text>Loading...</Text>;
+  if (error) return <Text>Error! {error.message}</Text>;
+
+  // FIXME: Convert date to string
   return (
     <Layout>
       <Text>Event Screen</Text>
-      {dummyData.map((event) => (
+      {data.map((event: Event) => (
         <EventCard
           id={event.id}
           name={event.name}
-          address={event.address}
-          startTime={event.startTime}
-          endTime={event.endTime}
+          address={event.addressLine1}
+          startTime={event.startDate}
+          endTime={event.endDate}
           key={event.id}
         />
       ))}
