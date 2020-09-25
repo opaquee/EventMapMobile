@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, TextInput, View } from "react-native";
+import { Button, Text, TextInput, View } from "react-native";
 
 // TODO: Set up form validation
 // TODO: Connect to API
@@ -10,6 +10,10 @@ const SignUpScreen: React.FC = (): JSX.Element => {
   const [email, setEmail] = useState("email@example.com");
   const [username, setUsername] = useState("Username");
   const [password, setPassword] = useState("");
+
+  const signUp = () => {
+    console.log("Sigup");
+  };
 
   return (
     <View>
@@ -34,6 +38,11 @@ const SignUpScreen: React.FC = (): JSX.Element => {
       <TextInput
         value={password}
         onChangeText={(value) => setPassword(value)}
+      />
+      <Button
+        onPress={signUp}
+        title="Sign Up"
+        accessibilityLabel="Signup Button"
       />
     </View>
   );
